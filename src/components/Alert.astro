@@ -1,0 +1,23 @@
+---
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a class='link-alert' href={href}><slot /></a>
+
+<style>
+  .link-alert {
+    --padding: 1rem;
+
+    display: block;
+    padding: var(--padding);
+    background-color: var(--alert-background);
+    width: calc(100% - var(--padding) * 2);
+    text-decoration: none;
+    text-align: center;
+    color: var(--alert-foreground);
+  }
+</style>
