@@ -21,9 +21,9 @@ async fn main(
     .expect("Failed to run migrations");
 
   let router: Router = Router::new()
-    .route("/messages/new", post(new))
-    .route("/messages/all", post(all))
-    .route("/messages/:id", post(id))
+    .route("/api/new", post(new))
+    .route("/api/all", post(all))
+    .route("/api/:id", post(id))
     .with_state(pool)
     .layer(CorsLayer::permissive());
 

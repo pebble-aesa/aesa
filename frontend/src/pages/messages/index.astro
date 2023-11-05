@@ -7,9 +7,9 @@ import Layout from '../../layouts/Layout.astro';
   <div class='p-5' id='messages'></div>
 
   <script>
-    const endpoint = 'https://aesa.shuttleapp.rs';
+    const endpoint = 'https://aesa.shuttleapp.rs/api';
 
-    fetch(`${endpoint}/messages/all`, {
+    fetch(`${endpoint}/all`, {
       method: 'POST',
     })
       .then((res) => res.json())
