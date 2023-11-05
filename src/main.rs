@@ -7,7 +7,10 @@ use axum::{
   Json, Router,
 };
 use sqlx::{PgPool, QueryBuilder};
-use tower_http::cors::CorsLayer;
+use tower_http::{
+  cors::CorsLayer,
+  services::{ServeDir, ServeFile},
+};
 use types::{GetMessage, InsertMessage};
 
 #[shuttle_runtime::main]
@@ -21,6 +24,12 @@ async fn main(
     .expect("Failed to run migrations");
 
   let router: Router = Router::new()
+    .nest_service(
+      "/",
+      ServeDir::new("public/dist")
+        .fallback(ServeFile::new("public/dist/404/index.html"))
+        .append_index_html_on_directories(true),
+    )
     .route("/api/new", post(new))
     .route("/api/all", post(all))
     .route("/api/:id", post(id))
