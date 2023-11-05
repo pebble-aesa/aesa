@@ -27,7 +27,7 @@ async fn main(
     .nest_service(
       "/",
       ServeDir::new("public/dist")
-        .fallback(ServeFile::new("public/dist/404/index.html"))
+        .fallback(ServeFile::new("public/dist/404.html"))
         .append_index_html_on_directories(true),
     )
     .route("/api/new", post(new))
