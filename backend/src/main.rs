@@ -25,7 +25,7 @@ async fn main(
     .route("/messages/all", post(all))
     .route("/messages/:id", post(id))
     .with_state(pool)
-    .layer(CorsLayer::very_permissive());
+    .layer(CorsLayer::permissive());
 
   Ok(router.into())
 }
