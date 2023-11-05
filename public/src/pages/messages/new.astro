@@ -24,7 +24,6 @@ import Input from '../../components/Input.astro';
   </form>
 
   <script>
-    const endpoint = 'https://aesa.shuttleapp.rs/api';
     const form = document.querySelector('form')!;
 
     form.addEventListener('submit', async (e) => {
@@ -36,7 +35,7 @@ import Input from '../../components/Input.astro';
         content: (document.getElementById('content') as any).value,
       };
 
-      const response = await fetch(`${endpoint}/new`, {
+      const response = await fetch(`/api/new`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
