@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Input from '../../components/Input.astro';
+---
+
+<Layout title='Aesa - Messages'>
+  <form>
+    <Input label='Title' name='title' placeholder='Motivational title here' />
+    <br />
+    <Input label='Nickname' name='nickname' placeholder='Anonymous' />
+    <br />
+    <Input
+      label='Message'
+      name='content'
+      placeholder='Write your inspirational message to the guys here'
+    />
+    <br />
+    <button
+      id='submit'
+      type='submit'
+      class='text-white hover:text-gray-200 border border-white hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+      >Submit</button
+    >
+  </form>
+
+  <script>
+    const endpoint = 'https://aesa.shuttleapp.rs';
+    const form = document.querySelector('form')!;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        title: (document.getElementById('title') as any).value,
+        nickname: (document.getElementById('nickname') as any).value,
+        content: (document.getElementById('content') as any).value,
+      };
+
+      const response = await fetch(`${endpoint}/messages/new`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.status === 500) {
+        window.location.href = '/messages';
+      }
+    });
+  </script>
+</Layout>

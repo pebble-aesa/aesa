@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title='Aesa - Messages'>
+  <h2>Messages</h2>
+  <div class='p-5' id='messages'></div>
+
+  <script>
+    const endpoint = 'https://aesa.shuttleapp.rs';
+
+    fetch(`${endpoint}/messages/all`, {
+      method: 'POST',
+    })
+      .then((res) => res.json())
+      .then(
+        (
+          data: {
+            id: number;
+            title: string;
+            nickname: string;
+            content: string;
+          }[]
+        ) => {
+          const messages = document.getElementById('messages')!;
+
+          data.forEach((message) => {
+            messages.appendChild(document.createElement('br'));
+
+            const div = document.createElement('div');
+            div.textContent = `${message.title} (${message.nickname})`;
+
+            const quote = document.createElement('div');
+            quote.textContent = message.content;
+            quote.style.marginTop = '0.5rem';
+            quote.style.paddingLeft = '1rem';
+            quote.style.borderLeft = '1px solid white';
+
+            div.appendChild(quote);
+            
+            messages.appendChild(div);
+          });
+        }
+      );
+  </script>
+</Layout>
