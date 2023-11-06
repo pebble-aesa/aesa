@@ -1,6 +1,6 @@
 # Aesa
 
-Entry by **A**, **E**mi, **S**hreyas, and **A**lexander for the Pebble Change the World Hackathon.
+Entry by **A**nsh, **E**mi, **S**hreyas, and **A**lexander for the Pebble Change the World Hackathon.
 
 Deployed to <https://aesa.shuttleapp.rs/>
 
