@@ -18,6 +18,7 @@ import Layout from '../../layouts/Layout.astro';
             title: string;
             nickname: string;
             content: string;
+            score: number;
           }[]
         ) => {
           const messages = document.getElementById('messages')!;
@@ -28,14 +29,43 @@ import Layout from '../../layouts/Layout.astro';
             const div = document.createElement('div');
             div.textContent = `${message.title} (${message.nickname})`;
 
+            const upButton = document.createElement('button');
+            upButton.textContent = '👍';
+            upButton.style.marginLeft = '1rem';
+            upButton.addEventListener('click', () => {
+              fetch(`/api/upvote/${message.id}`, {
+                method: 'POST',
+              })
+                .then((res) => res.json())
+                .catch(() => window.location.reload())
+            });
+
+            const score = document.createElement('span');
+            score.textContent = message.score.toString();
+            score.style.marginLeft = '0.5rem';
+            score.style.marginRight = '0.5rem';
+
+            const downButton = document.createElement('button');
+            downButton.textContent = '👎';
+            downButton.addEventListener('click', () => {
+              fetch(`/api/downvote/${message.id}`, {
+                method: 'POST',
+              })
+                .then((res) => res.json())
+                .catch(() => window.location.reload())
+            });
+
             const quote = document.createElement('div');
             quote.textContent = message.content;
             quote.style.marginTop = '0.5rem';
             quote.style.paddingLeft = '1rem';
             quote.style.borderLeft = '2px solid white';
 
+            div.appendChild(upButton);
+            div.appendChild(score);
+            div.appendChild(downButton);
             div.appendChild(quote);
-            
+
             messages.appendChild(div);
           });
         }

@@ -14,4 +14,5 @@ pub struct GetMessage {
   pub title: String,
   pub nickname: String,
   pub content: String,
+  pub score: i32,
 }

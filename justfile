@@ -9,3 +9,6 @@ run: build
 
 deploy: build-frontend
   cargo shuttle deploy
+
+migrate:
+  cargo sqlx migrate run --database-url postgres://aesa:aesa@localhost:5432/aesa
