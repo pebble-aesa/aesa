@@ -66,7 +66,7 @@ async fn new(
 }
 
 async fn all(State(pool): State<PgPool>) -> Result<Json<Vec<GetMessage>>, StatusCode> {
-  let mut query = QueryBuilder::new("SELECT * FROM messages");
+  let mut query = QueryBuilder::new("SELECT * FROM messages ORDER BY score DESC");
   let query = query.build_query_as::<GetMessage>();
 
   if let Ok(boards) = query.fetch_all(&pool).await {
