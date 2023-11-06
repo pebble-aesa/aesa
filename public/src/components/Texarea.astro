@@ -1,0 +1,24 @@
+---
+import '@fontsource/dm-sans';
+
+interface Props {
+  rows: number;
+  label: string;
+  name: string;
+  placeholder: string;
+}
+
+const { rows, label, name, placeholder } = Astro.props;
+---
+
+<div>
+  <label for={name} class='block mb-2 text-sm font-medium text-white'
+    >{label}</label
+  >
+  <textarea
+    id={name}
+    rows={rows}
+    class='bg-transparent border border-white text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+    placeholder={placeholder}
+    required></textarea>
+</div>

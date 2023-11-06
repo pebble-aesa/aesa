@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Input from '../../components/Input.astro';
+import Texarea from '../../components/Texarea.astro';
 ---
 
 <Layout title='Aesa - Messages'>
@@ -9,7 +10,8 @@ import Input from '../../components/Input.astro';
     <br />
     <Input label='Nickname' name='nickname' placeholder='Anonymous' />
     <br />
-    <Input
+    <Texarea
+      rows={4}
       label='Message'
       name='content'
       placeholder='Write your inspirational message to the guys here'
