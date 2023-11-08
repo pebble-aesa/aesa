@@ -24,6 +24,10 @@ import Layout from '../../layouts/Layout.astro';
           const messages = document.getElementById('messages')!;
 
           data.forEach((message) => {
+            if (message.score < -20 && !new URLSearchParams(window.location.search).has('showall')) {
+              return;
+            }
+
             messages.appendChild(document.createElement('br'));
 
             const div = document.createElement('div');
